@@ -2,8 +2,13 @@
 
 import Link from 'next/link';
 import React from 'react';
+import { Sun, Moon } from "lucide-react";
+import { useDarkMode } from '@/context/DarkModeContext';
+
 
 function NavBar() {
+
+    const { isDarkMode, toggleDarkMode } = useDarkMode();
 
     return (
         <nav className='bg-gray-100 text-gray-900 fixed top-0 left-0 w-full z-50 shadow-md'>
@@ -11,7 +16,7 @@ function NavBar() {
                 <div className='flex justify-between h-16 items-center'>
                     {/* logo section  */}
                     <div className='flex items-center'>
-                        <Link href='/' className='text-2xl font-black'>Journal App</Link>
+                        <Link href='/' className='text-2xl font-black hover:text-blue-500'>Journal App</Link>
                     </div>
 
                     <div className='hidden md:flex space-x-6'>
@@ -21,9 +26,21 @@ function NavBar() {
                         <Link href="/about" className='px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-200'>
                             About
                         </Link>
-                        <Link href="/about" className='px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-200'>
+                        <Link href="/profile" className='px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-200'>
+                            My Profile
+                        </Link>
+                        <Link href="/contact" className='px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-200'>
                             Contact
                         </Link>
+
+                        {/* toggle darkMode  */}
+                        <button onClick={toggleDarkMode} className='ml-4'>
+                            {isDarkMode ? (
+                                <Moon className='cursor-pointer text-gray-900 hover:bg-blue-200 rounded-md px-1 py-1' size={30} />
+                            ) : (
+                                <Sun className='cursor-pointer text-gray-900 hover:bg-blue-200 rounded-md px-1 py-1' size={30} />
+                            )}
+                        </button>
                     </div>
                 </div>
             </div>
