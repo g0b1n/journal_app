@@ -83,6 +83,6 @@ const config: Config = {
             }
         },
     },
-    plugins: [createThemes(themes), require("tailwindcss-animate")]
+    plugins: [createThemes(themes)]
 };
 export default config;

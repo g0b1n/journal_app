@@ -19,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.clasName}>
+      <body className={inter.className}>
         <DarkModeProvider>
           <SessionProviderWrapper>
             <HomePageWrapper>{ children }</HomePageWrapper>

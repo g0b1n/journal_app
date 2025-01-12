@@ -23,12 +23,15 @@ function NavBar() {
                         <Link href="/" className='px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-200'>
                             Home
                         </Link>
-                        <Link href="/about" className='px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-200'>
-                            About
-                        </Link>
+
                         <Link href="/profile" className='px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-200'>
                             My Profile
                         </Link>
+                        
+                        <Link href="/about" className='px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-200'>
+                            About
+                        </Link>
+                        
                         <Link href="/contact" className='px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-200'>
                             Contact
                         </Link>
