@@ -1,11 +1,13 @@
 "use client"
 
 import React from 'react';
+import Post from '@/components/Posts/posts';
 
 const HomePage = () => {
   return (
     <div>
-      <h1>Home Page</h1>
+      {/* we will render all the posts on timeline or at main page like this  */}
+      <Post />
     </div>
   );
 }
