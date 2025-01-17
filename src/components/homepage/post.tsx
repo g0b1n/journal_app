@@ -2,6 +2,7 @@
 
 import React, {useState} from'react';
 import Image from 'next/image';
+import { formatDistanceToNow } from "date-fns";
 
 
 // Post Components
@@ -11,7 +12,7 @@ interface PostProps {
   userName: string;
   postTitle: string;
   contentArea: string;
-  date: string;
+  timestamp: Date | string;
 }
 
 export default function Post({
@@ -19,7 +20,7 @@ export default function Post({
   userName,
   postTitle,
   contentArea,
-  date,
+  timestamp,
 }: PostProps) {
   const [isExpended, setIsExpanded] = useState(false);
   const maxLength = 100; 
@@ -31,6 +32,7 @@ export default function Post({
     contentArea.length > maxLength && !isExpended
     ? contentArea.slice(0, maxLength) + "..."
     : contentArea;
+
   return (
     <div className="flex justify-center py-8">
     
@@ -47,6 +49,7 @@ export default function Post({
           />
           <div>
             <p className="font-bold">{userName}</p>
+            <p className='text-sm text-gray-500 mb-2'>{formatDistanceToNow(new Date(timestamp), { addSuffix: true })}</p>
             <p className="text-sm text-gray-500"></p>
           </div>
         </div>
@@ -55,8 +58,6 @@ export default function Post({
 
       {/* Post Title */}
       <h2 className="text-lg font-semibold mb-2">{postTitle}</h2>
-      <p className='text-sm text-gray-500 mb-2'>{date}</p>
-
 
       {/* Content */}
       <p className="text-gray-700 mb-4">
