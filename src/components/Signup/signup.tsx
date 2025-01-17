@@ -1,14 +1,53 @@
+"use client"
+
 import React from 'react'
+
 
 function Signup() {
   return (
     <div className='flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8'>
       <div className='sm:mx-auto sm:w-full sm:max-w-sm'>
-        <h2 className='mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900'>Login to your account</h2>
+        <h2 className='mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900'>Create an account</h2>
       </div>
+
+      
 
       <div className='mt-10 sm:mx-auto sm:w-full sm:max-w-sm'>
         <form className='space-y-6' action='#' method='POST'>
+
+          <div>
+            <div>
+              <label htmlFor="email" className='block text-sm/6 font-medium text-gray-900'>Email</label>
+            </div>
+              <div className='mt-2'>
+                <input 
+                  type='email'
+                  name='email'
+                  placeholder='example@email.com'
+                  required
+                  className='block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 focus:outline-2 focus:outline-blue-500'
+                /> 
+              </div>
+              <div className='mt-2 justify text-center'>
+                <p>or</p>
+              </div>
+
+              <div>
+                <div>
+                  <label htmlFor="phoneNumber" className='block text-sm/6 font-medium text-gray-900'>Phone <span className='text-xs text-thin text-gray-500'>Optional</span></label>
+                </div>
+
+                <div className='mt-2'>
+                <input 
+                  type='tel'
+                  name='phoneNumber'
+                  placeholder='(123)-456-7890'
+                  className='block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 focus:outline-2 focus:outline-blue-500'
+                /> 
+              </div>
+              </div>
+          </div>
+
           <div>
             <label htmlFor="username" className='block text-sm/6 font-medium text-gray-900'>Username</label>
             <div className='mt-2'>
@@ -36,6 +75,9 @@ function Signup() {
                   className='block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 focus:outline-2 focus:outline-blue-500'
                 /> 
               </div>
+              <div className='mt-1 text-xs font-light text-gray-500'>
+                <p>Must contain: Min 8 Characters, 1 uppercase and 1 number and 1 special Characters: !@#$%^&*</p>
+              </div>
           </div>
 
           <div>
@@ -62,7 +104,7 @@ function Signup() {
           </div>
         </form>
 
-        <p className='mt-10 text-center text-sm/6 text-gray-600'>
+        <p className='mt-5 text-center text-sm/6 text-gray-600'>
         Already have an account?{' '}
         <a href='/login' className='font-semibold text-blue-600 hover:text-blue-400'>
           Log in

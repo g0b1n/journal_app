@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 
 function Login() {
@@ -50,7 +51,7 @@ function Login() {
           </div>
         </form>
 
-        <p className='mt-10 text-center text-sm/6 text-gray-600'>
+        <p className='mt-5 text-center text-sm/6 text-gray-600'>
         Don&apos;t have an account?{' '}
         <a href='/signup' className='font-semibold text-blue-600 hover:text-blue-400'>
           Sign Up
