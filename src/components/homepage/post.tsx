@@ -11,6 +11,7 @@ interface PostProps {
   userName: string;
   postTitle: string;
   contentArea: string;
+  date: string;
 }
 
 export default function Post({
@@ -18,6 +19,7 @@ export default function Post({
   userName,
   postTitle,
   contentArea,
+  date,
 }: PostProps) {
   const [isExpended, setIsExpanded] = useState(false);
   const maxLength = 100; 
@@ -53,6 +55,7 @@ export default function Post({
 
       {/* Post Title */}
       <h2 className="text-lg font-semibold mb-2">{postTitle}</h2>
+      <p className='text-sm text-gray-500 mb-2'>{date}</p>
 
 
       {/* Content */}
