@@ -28,12 +28,12 @@ function NavBar() {
                             My Profile
                         </Link>
                         
-                        <Link href="/about" className='px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-200'>
-                            About
+                        {/* Need to conditionally render if logged in show Log Out btn if not loggedin show log-in and Sign-up btn  */}
+                        <Link href="/login" className='px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-200'>
+                            Log In
                         </Link>
-                        
-                        <Link href="/contact" className='px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-200'>
-                            Contact
+                        <Link href="/signup" className='px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-200'>
+                            Sign Up
                         </Link>
 
                         {/* toggle darkMode  */}
