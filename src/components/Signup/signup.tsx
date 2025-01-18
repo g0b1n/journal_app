@@ -76,7 +76,7 @@ function Signup() {
                 /> 
               </div>
               <div className='mt-1 text-xs font-light text-gray-500'>
-                <p>Must contain: Min 8 Characters, 1 uppercase and 1 number and 1 special Characters: !@#$%^&*</p>
+                <p>Must contain: Min 8 Characters, 1 uppercase, 1 number and 1 special Characters: !@#$%^&*</p>
               </div>
           </div>
 
@@ -99,7 +99,7 @@ function Signup() {
             <button 
               type='submit'
               className='flex w-full justify-center rounded-md bg-blue-600 px-3 py-1.5 text-sm/6 font-semibold text-gray-100 hover:bg-blue-400'>
-              Sign in
+              Sign up
             </button>
           </div>
         </form>
