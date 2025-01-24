@@ -1,6 +1,6 @@
 "use client"
 
-import React, {useState} from'react';
+import React, { useState} from'react';
 import Image from 'next/image';
 import { formatDistanceToNow } from "date-fns";
 import { Ellipsis, ExternalLink, MessageCircle } from 'lucide-react';
@@ -8,7 +8,8 @@ import { Ellipsis, ExternalLink, MessageCircle } from 'lucide-react';
 
 // Post Components
 
-interface PostProps {
+ export interface PostProps {
+  id: number;
   profilePic: string;
   userName: string;
   postTitle: string;
