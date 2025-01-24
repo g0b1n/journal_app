@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from 'react'
-import Post, {PostProps} from '../Posts/posts'
+import Post, { PostProps } from '../Posts/posts'
 import Image from 'next/image';
 
 interface UserProfileProps {
@@ -29,13 +29,14 @@ function UserProfile(props:UserProfileProps) {
     <div className='max-w-3xl mx-auto p-4'>
         <div className='flex items-center mb-6'>
             {profilePic ? (
-            <Image
-                src={profilePic}
-                alt='Profile'
-                width={80}
-                height={80}
-                className='w-20 h-20 rounded-full mr-4'
-            />
+            <div className='relative w-20 h-20 rounded-full overflow-hidden mr-2 border-2 border-blue-500'>
+                        <Image
+                          src={profilePic }
+                          alt="Profile"
+                          layout='fill'
+                          objectFit='cover'
+                        />
+                      </div>
             ) : (
                 <div className='w-20 h-20 rounded-full bg-gray-300 mr-4' />
             )}
@@ -53,14 +54,14 @@ function UserProfile(props:UserProfileProps) {
         <div className='flex border-b mb-4'>
             <button 
                 className={`p-2 ${
-                    activeTab === "posts" ? "border-b-2 border-blue-500" : "" }`}
+                    activeTab === "posts" ? "border-b-2 border-blue-500 text-blue-500" : "" }`}
                     onClick={() => setActiveTab("posts")}
                     >
-                        posts
+                        Posts
             </button>
             <button 
                     className={`p-2 ${
-                        activeTab === "private" ? "border-b-2 border-blue-500" : ""
+                        activeTab === "private" ? "border-b-2 border-blue-500 text-blue-500" : ""
                          }`}
                         onClick={() => setActiveTab("private")}
                     >
