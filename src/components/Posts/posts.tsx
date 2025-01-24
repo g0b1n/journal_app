@@ -47,13 +47,14 @@ export default function Post({
         
         <div className='flex items-center justify-between mb-4'>
         <div className="flex items-center">
-          <Image
-            src={profilePic }
-            alt="Profile"
-            width={40}
-            height={40}
-            className="w-10 h-10 rounded-full mr-3"
-          />
+          <div className='relative w-10 h-10 rounded-full overflow-hidden mr-2 border-2 border-blue-500'>
+            <Image
+              src={profilePic }
+              alt="Profile"
+              layout='fill'
+              objectFit='cover'
+            />
+          </div>
           <div>
             <p className="font-bold">{userName}</p>
             <p className='text-sm text-gray-500 mb-2'>{formatDistanceToNow(new Date(timestamp), { addSuffix: true })}</p>
