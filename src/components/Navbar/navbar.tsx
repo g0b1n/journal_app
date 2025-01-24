@@ -27,6 +27,9 @@ function NavBar() {
                         <Link href="/profile" className='px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-200'>
                             My Profile
                         </Link>
+                        <Link href="/setting" className='px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-200'>
+                            Setting
+                        </Link>
                         
                         {/* Need to conditionally render if logged in show Log Out btn if not loggedin show log-in and Sign-up btn  */}
                         <Link href="/login" className='px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-200'>
