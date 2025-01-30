@@ -57,8 +57,7 @@ export default function Post({
           </div>
           <div>
             <p className="font-bold">{userName}</p>
-            <p className='text-sm text-gray-500 mb-2'>{formatDistanceToNow(new Date(timestamp), { addSuffix: true })}</p>
-            <p className="text-sm text-gray-500"></p>
+            <p className='text-xs text-gray-500'>{formatDistanceToNow(new Date(timestamp), { addSuffix: true })}</p>
           </div>
         </div>
         <button className="text-gray-500 bg-gray-200 rounded-full p-1  hover:text-gray-100 hover:bg-blue-500 hover:scale-1.5"><Ellipsis /></button>

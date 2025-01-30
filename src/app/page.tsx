@@ -8,7 +8,7 @@ const HomePage = () => {
   const profilePic = "/images/AchyutPic.jpg"
   
   return (
-    <div className='bg-gray'>
+    <div>
      
     <Post profilePic={profilePic}
       userName="Test User"
