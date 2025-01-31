@@ -179,7 +179,7 @@ function Settings() {
                 className='justify-center bg-red-400 p-2 rounded-md text-gray-100'
             >Close</button>
         </dialog>
-        <EditProfileDialog isOpen={isEditOpen} onClose={() => setIsEditOpen(false)} />
+        <EditProfileDialog isOpen={isEditOpen} onClose={() => setIsEditOpen(false)} currentEmail={''} currentPhone={''} />
         
 
 

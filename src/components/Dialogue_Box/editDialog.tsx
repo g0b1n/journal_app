@@ -6,72 +6,120 @@ import DialogueBox from "../Dialogue_Box/dialogue_box";
 interface EditProfileDialogProps {
   isOpen: boolean;
   onClose: () => void;
+  currentEmail: string;
+  currentPhone: string;
 }
 
-export default function EditProfileDialog({ isOpen, onClose }: EditProfileDialogProps) {
-  const [newEmail, setNewEmail] = useState("");
-  const [newPhone, setNewPhone] = useState("");
-  const [isDeleteConfirmOpen, setIsDeleteConfirmOpen] = useState(false);
+export default function EditProfileDialog({ isOpen, onClose, currentEmail, currentPhone }: EditProfileDialogProps) {
+  const [editType, setEditType] = useState<"email" | "phone" | null>(null);
+  const [newEmail, setNewEmail] = useState(currentEmail);
+  const [newPhone, setNewPhone] = useState(currentPhone);
+  const [isConfirmOpen, setIsConfirmOpen] = useState(false);
 
   const handleUpdate = () => {
-    console.log("Updated Profile:", { newEmail, newPhone });
+    setIsConfirmOpen(false);
+    setEditType(null);
     onClose();
   };
 
   return (
     <>
-      {/* Main Edit Profile Dialog */}
-      <DialogueBox
-        isOpen={isOpen}
-        onClose={onClose}
-        title="Edit Profile"
-        confirmLabel="Update"
-        cancelLabel="Cancel"
-        onConfirm={handleUpdate} // Only ONE Cancel Button Inside
-      >
-        <form>
-          {/* Email Field */}
-          <label className="block text-sm font-medium">Email</label>
-          <input
-            type="email"
-            name="email"
-            placeholder="example@email.com"
-            value={newEmail}
-            onChange={(e) => setNewEmail(e.target.value)}
-            className="block w-full rounded-md px-3 py-1.5 mt-2"
-          />
-
-          {/* Phone Number Field */}
-          <label className="block text-sm font-medium mt-4">Phone Number</label>
-          <input
-            type="text"
-            name="phone"
-            placeholder="(123) 456-7890"
-            value={newPhone}
-            onChange={(e) => setNewPhone(e.target.value)}
-            className="block w-full rounded-md px-3 py-1.5 mt-2"
-          />
-
-          {/* Hidden Delete Account Button */}
+      {/* Step 1: Ask What to Edit */}
+      <DialogueBox isOpen={isOpen && !editType} onClose={onClose} title="Edit Profile">
+        <p className="mb-4 text-gray-300 text-center text-lg font-medium">
+          What would you like to edit?
+        </p>
+        <div className="flex justify-between">
           <button
-            type="button"
-            className="hidden"
-            onClick={() => setIsDeleteConfirmOpen(true)}
+            onClick={() => setEditType("email")}
+            className="w-1/2 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 mr-2"
           >
-            Delete Account
+            Email
           </button>
-        </form>
+          <button
+            onClick={() => setEditType("phone")}
+            className="w-1/2 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700"
+          >
+            Phone Number
+          </button>
+        </div>
       </DialogueBox>
 
-      {/*  Delete Account Confirmation Dialog */}
+      {/* Step 2: Edit Email */}
+      {editType === "email" && (
+        <DialogueBox isOpen={true} onClose={() => setEditType(null)} title="Edit Email">
+          <form>
+            <label className="block text-sm font-medium text-gray-300">
+              New Email
+            </label>
+            <input
+              type="email"
+              name="email"
+              value={newEmail}
+              onChange={(e) => setNewEmail(e.target.value)}
+              className="block w-full rounded-md px-3 py-1.5 mt-2 bg-gray-800 text-white border border-gray-600 focus:border-blue-500 focus:outline-none"
+            />
+          </form>
+      
+          <div className="flex justify-end mt-4 space-x-2">
+            <button
+              onClick={() => setIsConfirmOpen(true)}
+              className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+            >
+              Update
+            </button>
+            <button
+              onClick={() => setEditType(null)}
+              className="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700"
+            >
+              Cancel
+            </button>
+          </div>
+        </DialogueBox>
+      )}
+
+      {/* Step 2: Edit Phone Number */}
+      {editType === "phone" && (
+        <DialogueBox isOpen={true} onClose={() => setEditType(null)} title="Edit Phone Number">
+          <form>
+            <label className="block text-sm font-medium text-gray-300">
+              New Phone Number
+            </label>
+            <input
+              type="text"
+              name="phone"
+              value={newPhone}
+              onChange={(e) => setNewPhone(e.target.value)}
+              className="block w-full rounded-md px-3 py-1.5 mt-2 bg-gray-800 text-white border border-gray-600 focus:border-blue-500 focus:outline-none"
+            />
+          </form>
+          
+          <div className="flex justify-end mt-4 space-x-2">
+            <button
+              onClick={() => setIsConfirmOpen(true)}
+              className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+            >
+              Update
+            </button>
+            <button
+              onClick={() => setEditType(null)}
+              className="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700"
+            >
+              Cancel
+            </button>
+          </div>
+        </DialogueBox>
+      )}
+
+      {/* Step 3: Confirm Update */}
       <DialogueBox
-        isOpen={isDeleteConfirmOpen}
-        onClose={() => setIsDeleteConfirmOpen(false)}
-        title="Confirm Account Deletion"
-        message="Are you sure you want to delete your account? This action cannot be undone."
-        confirmLabel="Delete"
+        isOpen={isConfirmOpen}
+        onClose={() => setIsConfirmOpen(false)}
+        title="Confirm Update"
+        message={`Are you sure you want to update your ${editType === "email" ? "email" : "phone number"}?`}
+        confirmLabel="Confirm"
         cancelLabel="Cancel"
-        onConfirm={() => console.log("Account Deleted")}
+        onConfirm={handleUpdate}
       />
     </>
   );
