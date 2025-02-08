@@ -1,5 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
+import { FaFacebookF, FaInstagram } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 function Footer() {
   return (
@@ -12,8 +14,9 @@ function Footer() {
           </div>
 
             <div className='flex'>
-              <p className='pl-1'>Twitter</p>
-              <p className='pl-1'>Instagram</p>
+              <FaFacebookF size={24}/>
+              <FaInstagram size={24}/>
+              <FaXTwitter size={24}/>
             </div>
         </div>
         <div className='container mx-auto text-center'>
@@ -23,4 +26,4 @@ function Footer() {
   )
 }
 
-export default Footer
+export default Footer;
