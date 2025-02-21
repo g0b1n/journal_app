@@ -1,7 +1,35 @@
 "use client"
 import React from 'react'
 
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { useState } from 'react'
+
 function Login() {
+  
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const router = useRouter();
+  
+      const handleSubmit = async (e: React.FormEvent) => {
+      e.preventDefault();
+      const result = await signIn('credentials', {
+        redirect: false,
+        username,
+        password,
+      });
+  
+      if (result?.error) {
+        setError('Invalid email or password');
+      } else {
+        setError(`Login successful! Welcome back, ${username}`)
+        setTimeout(() => {
+          router.push('/')
+        }, 2000)
+      }
+  }
+
   return (
     <div className='flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8'>
       <div className='sm:mx-auto sm:w-full sm:max-w-sm'>
@@ -9,7 +37,7 @@ function Login() {
       </div>
 
       <div className='mt-10 sm:mx-auto sm:w-full sm:max-w-sm'>
-        <form className='space-y-6' action='#' method='POST'>
+        <form className='space-y-6' action='#' method='POST' onSubmit={handleSubmit}>
           <div>
             <label htmlFor="username" className='block text-sm/6 font-medium text-gray-900'>Username</label>
             <div className='mt-2'>
@@ -17,6 +45,8 @@ function Login() {
                 type='text'
                 name='username'
                 placeholder='Username'
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 required
                 className='block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 focus:outline-2 focus:outline-blue-500'
               /> 
@@ -36,6 +66,8 @@ function Login() {
                   type='password'
                   name='password'
                   placeholder='Password'
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   required
                   className='block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 focus:outline-2 focus:outline-blue-500'
                 /> 
@@ -50,10 +82,11 @@ function Login() {
             </button>
           </div>
         </form>
+        {error && <p className='mt-2 text-center text-red-500'>{error}</p>}
 
         <p className='mt-5 text-center text-sm/6 text-gray-600'>
         Don&apos;t have an account?{' '}
-        <a href='/signup' className='font-semibold text-blue-600 hover:text-blue-400'>
+        <a href='/auth/register' className='font-semibold text-blue-600 hover:text-blue-400'>
           Sign Up
         </a>
         </p>
