@@ -25,6 +25,8 @@ function UserProfile(props:UserProfileProps) {
     } = props;
     const [ activeTab, setActiveTab] = useState("posts")
     const displayedPost = activeTab === "posts" ? publicPosts : privatePosts;
+
+
   return (
     <div className='max-w-3xl mx-auto p-4'>
         <div className='flex items-center mb-6'>
@@ -44,9 +46,9 @@ function UserProfile(props:UserProfileProps) {
             <div> 
                 <h1 className='text-2xl font-bold'>{username || "Loading username..."}</h1>
                 <div className='text-gray-600 flex space-x-4'>
-                    {followers !== undefined && <p>{followers} Followers</p>}
-                    {following !== undefined && <p>{following} Following</p>}
-                    {likes !== undefined && <p>{likes} Likes</p>}
+                    {followers !== undefined && <p>{followers} <span className='text-sm text-gray-400'>Followers</span></p>}
+                    {following !== undefined && <p>{following} <span className='text-sm text-gray-400'>Following</span></p>}
+                    {likes !== undefined && <p>{likes} <span className='text-sm text-gray-400'>Likes</span></p>}
                 </div>
             </div>
         </div>
