@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import Image from 'next/image';
 import { ChevronRight, ToggleLeft, ToggleRight } from 'lucide-react';
+import EditProfileDialog from '../Dialogue_Box/editDialog';
 
 function Settings() {
     const profilePic = "/images/AchyutPic.jpg"
@@ -178,13 +179,11 @@ function Settings() {
                 className='justify-center bg-red-400 p-2 rounded-md text-gray-100'
             >Close</button>
         </dialog>
-
-        
+        <EditProfileDialog isOpen={isEditOpen} onClose={() => setIsEditOpen(false)} currentEmail={''} currentPhone={''} />
         
 
 
     </div>
   )
 }
-
-export default Settings;
+export default Settings
