@@ -26,7 +26,7 @@ export default function EditProfileDialog({ isOpen, onClose, currentEmail, curre
     <>
       {/* Step 1: Ask What to Edit */}
       <DialogueBox isOpen={isOpen && !editType} onClose={onClose} title="Edit Profile">
-        <p className="mb-4 text-gray-300 text-center text-lg font-medium">
+        <p className="mb-4 text-gray-900 text-center text-lg font-medium">
           What would you like to edit?
         </p>
         <div className="flex justify-between">
@@ -49,7 +49,7 @@ export default function EditProfileDialog({ isOpen, onClose, currentEmail, curre
       {editType === "email" && (
         <DialogueBox isOpen={true} onClose={() => setEditType(null)} title="Edit Email" onConfirm={() => setIsConfirmOpen(true)} confirmLabel="Update">
           <form>
-            <label className="block text-sm font-medium text-gray-300">
+            <label className="block text-sm font-medium text-gray-900">
               New Email
             </label>
             <input
@@ -57,7 +57,7 @@ export default function EditProfileDialog({ isOpen, onClose, currentEmail, curre
               name="email"
               value={newEmail}
               onChange={(e) => setNewEmail(e.target.value)}
-              className="block w-full rounded-md px-3 py-1.5 mt-2 bg-gray-800 text-white border border-gray-600 focus:border-blue-500 focus:outline-none"
+              className="block w-full rounded-md px-3 py-1.5 mt-2 text-gray-900 border border-gray-600 focus:border-blue-500 focus:outline-none"
             />
           </form>
         </DialogueBox>
@@ -67,7 +67,7 @@ export default function EditProfileDialog({ isOpen, onClose, currentEmail, curre
       {editType === "phone" && (
         <DialogueBox isOpen={true} onClose={() => setEditType(null)} title="Edit Phone Number" onConfirm={() => setIsConfirmOpen(true)} confirmLabel="Update">
           <form>
-            <label className="block text-sm font-medium text-gray-300">
+            <label className="block text-sm font-medium text-gray-900">
               New Phone Number
             </label>
             <input
@@ -75,7 +75,7 @@ export default function EditProfileDialog({ isOpen, onClose, currentEmail, curre
               name="phone"
               value={newPhone}
               onChange={(e) => setNewPhone(e.target.value)}
-              className="block w-full rounded-md px-3 py-1.5 mt-2 bg-gray-800 text-white border border-gray-600 focus:border-blue-500 focus:outline-none"
+              className="block w-full rounded-md px-3 py-1.5 mt-2 text-gray-900 border border-gray-600 focus:border-blue-500 focus:outline-none"
             />
           </form>
         </DialogueBox>

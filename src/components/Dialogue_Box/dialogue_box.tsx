@@ -28,7 +28,7 @@ export default function DialogueBox({
 
 
         {/* Title */}
-        <h2 className="text-lg font-semibold text-gray-900-400 mt-2">{title}</h2>
+        <h2 className="text-lg font-semibold text-gray-900-400 mt-2 text-center">{title}</h2>
 
         {/* Message */}
         {message && <p className="text-gray-600 dark:text-400 mt-2">{message}</p>}
@@ -40,7 +40,7 @@ export default function DialogueBox({
         <div className="flex justify-end items-center gap-2 mt-4 flex-nowrap">
           <button
             onClick={onClose}
-            className="px-4 py-2 w-auto min-w-[80px] bg-gray-200 text-gray-800 rounded hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600"
+            className="px-4 py-2 w-auto min-w-[80px] border border-red-500 text-red-500 rounded hover:bg-red-500 hover:text-gray-100"
           >
             {cancelLabel}
           </button>
