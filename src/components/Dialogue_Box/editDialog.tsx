@@ -47,7 +47,7 @@ export default function EditProfileDialog({ isOpen, onClose, currentEmail, curre
 
       {/* Step 2: Edit Email */}
       {editType === "email" && (
-        <DialogueBox isOpen={true} onClose={() => setEditType(null)} title="Edit Email">
+        <DialogueBox isOpen={true} onClose={() => setEditType(null)} title="Edit Email" onConfirm={() => setIsConfirmOpen(true)} confirmLabel="Update">
           <form>
             <label className="block text-sm font-medium text-gray-300">
               New Email
@@ -60,27 +60,12 @@ export default function EditProfileDialog({ isOpen, onClose, currentEmail, curre
               className="block w-full rounded-md px-3 py-1.5 mt-2 bg-gray-800 text-white border border-gray-600 focus:border-blue-500 focus:outline-none"
             />
           </form>
-      
-          <div className="flex justify-end mt-4 space-x-2">
-            <button
-              onClick={() => setIsConfirmOpen(true)}
-              className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-            >
-              Update
-            </button>
-            <button
-              onClick={() => setEditType(null)}
-              className="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700"
-            >
-              Cancel
-            </button>
-          </div>
         </DialogueBox>
       )}
 
       {/* Step 2: Edit Phone Number */}
       {editType === "phone" && (
-        <DialogueBox isOpen={true} onClose={() => setEditType(null)} title="Edit Phone Number">
+        <DialogueBox isOpen={true} onClose={() => setEditType(null)} title="Edit Phone Number" onConfirm={() => setIsConfirmOpen(true)} confirmLabel="Update">
           <form>
             <label className="block text-sm font-medium text-gray-300">
               New Phone Number
@@ -93,21 +78,6 @@ export default function EditProfileDialog({ isOpen, onClose, currentEmail, curre
               className="block w-full rounded-md px-3 py-1.5 mt-2 bg-gray-800 text-white border border-gray-600 focus:border-blue-500 focus:outline-none"
             />
           </form>
-          
-          <div className="flex justify-end mt-4 space-x-2">
-            <button
-              onClick={() => setIsConfirmOpen(true)}
-              className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-            >
-              Update
-            </button>
-            <button
-              onClick={() => setEditType(null)}
-              className="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700"
-            >
-              Cancel
-            </button>
-          </div>
         </DialogueBox>
       )}
 
