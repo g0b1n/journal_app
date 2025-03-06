@@ -1,25 +1,16 @@
 "use client"
 
-import React, { useEffect } from 'react'
-import { useSession } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
+import React from 'react'
+import { useRequiredAuth } from '@/hooks/useRequiredAuth'
 import Settings from '@/components/Settings/settings'
 
 function Setting() {
 
-  const { data: session, status } = useSession();
-    const router = useRouter();
-    
-    // redirect to login page if not authenticated
-    useEffect(() => {
-      if (status === 'unauthenticated') {
-        router.push("/auth/signin")
-      }
-    }, [status, router])
-    
-    if (status === 'loading') {
-      return <div>Loading...</div>
-    }
+  const { loading, session } = useRequiredAuth();
+
+  if (loading) {
+    return <div>Loading...</div>
+  }
 
   return (
     <div>
