@@ -82,7 +82,9 @@ function Login() {
             </button>
           </div>
         </form>
-        {error && <p className='mt-2 text-center text-red-500'>{error}</p>}
+        
+        {/* Login success message before redirecting to main page  */}
+        {error && <p className='mt-2 text-center text-green-500'>{error}</p>}
 
         <p className='mt-5 text-center text-sm/6 text-gray-600'>
         Don&apos;t have an account?{' '}
