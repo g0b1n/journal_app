@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/lib/authOptions";
 
 // GET
-export async function GET(request: NextRequest){
+export async function GET(request: NextRequest) {
     try {
         // get all posts from db
         const posts = await prisma.post.findMany({
@@ -12,21 +14,32 @@ export async function GET(request: NextRequest){
     } catch (error) {
         // handle errors
         if (error instanceof Error) {
-            return NextResponse.json({ error: error.message }, { status: 500 })
+            return NextResponse.json({ error: error.message }, { status: 500 });
         }
-        return NextResponse.json({ error: "An unknown error occured"}, { status: 500 });
+        return NextResponse.json(
+            { error: "An unknown error occured" },
+            { status: 500 }
+        );
     }
 }
 
 // POST
-export async function POST(request: NextRequest){
+export async function POST(request: NextRequest) {
     try {
         // parse json body
         const data = await request.json();
-        const { title, content, userId, published, isPrivate } = data;
+        const { title, content, published, isPrivate } = data;
+
+        const session = await getServerSession(authOptions);
+        if (!session || !session.user?.id) {
+            return NextResponse.json(
+                { error: "User not authenticated" },
+                { status: 401 }
+            );
+        }
 
         // validate required fields
-        if (!title || !content || !userId) {
+        if (!title || !content) {
             return NextResponse.json(
                 { error: "Missing required fields: title, content, or userId" },
                 { status: 400 }
@@ -38,7 +51,7 @@ export async function POST(request: NextRequest){
             data: {
                 title,
                 content,
-                userId,
+                userId: session.user.id,
                 published: published ?? false, // defaults to false
                 isPrivate: isPrivate ?? false, // defaults to false
             },
@@ -47,11 +60,14 @@ export async function POST(request: NextRequest){
         // return newly created post
         return NextResponse.json({ post });
     } catch (error) {
-       // handle errors
+        // handle errors
         if (error instanceof Error) {
-            return NextResponse.json({ error: error.message }, { status: 500 })
+            return NextResponse.json({ error: error.message }, { status: 500 });
         }
-        return NextResponse.json({ error: "An unknown error occured"}, { status: 500 });
+        return NextResponse.json(
+            { error: "An unknown error occured" },
+            { status: 500 }
+        );
     }
 }
 
@@ -92,10 +108,13 @@ export async function PATCH(request: NextRequest) {
         return NextResponse.json({ post: updatedPost });
     } catch (error) {
         if (error instanceof Error) {
-            return NextResponse.json({ error: error.message }, { status: 500 })
+            return NextResponse.json({ error: error.message }, { status: 500 });
         }
 
-        return NextResponse.json({ error: "An unknown error occured"}, { status: 500 })
+        return NextResponse.json(
+            { error: "An unknown error occured" },
+            { status: 500 }
+        );
     }
 }
 
@@ -107,7 +126,10 @@ export async function DELETE(request: NextRequest) {
         const id = searchParams.get("id");
 
         if (!id) {
-            return NextResponse.json({ error: "Post id is required" }, { status: 400 })
+            return NextResponse.json(
+                { error: "Post id is required" },
+                { status: 400 }
+            );
         }
 
         // delete the post from the db
@@ -118,9 +140,12 @@ export async function DELETE(request: NextRequest) {
         return NextResponse.json({ post: deletedPost });
     } catch (error) {
         if (error instanceof Error) {
-            return NextResponse.json({ error: error.message }, { status: 500 })
+            return NextResponse.json({ error: error.message }, { status: 500 });
         }
 
-        return NextResponse.json({ error: "An unknown error occured"}, { status: 500 })
+        return NextResponse.json(
+            { error: "An unknown error occured" },
+            { status: 500 }
+        );
     }
 }
