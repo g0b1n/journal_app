@@ -1,14 +1,43 @@
 "use client"
 
-import React from 'react'
-import { useRequiredAuth } from '@/hooks/useRequiredAuth'
+import React, { useState, useEffect } from 'react';
+import { useRequiredAuth } from '@/hooks/useRequiredAuth';
 import Post from '@/components/Posts/posts';
 
+interface PostType {
+  id: string;
+  title: string;
+  content: string;
+  createdAt: string;
+  profilePic: string;
+  user?: {
+    username: string;
+  };
+}
 
 const HomePage = () => {
   const profilePic = "/images/AchyutPic.jpg"
-
   const { loading, session } = useRequiredAuth();
+
+  const [ posts, setPosts ] = useState<PostType[]>([]);
+
+  useEffect(() => {
+    async function fetchPosts() {
+      try {
+        const response = await fetch("/api/post");
+        if (!response.ok) {
+          throw new Error("Failed to fetch posts");
+        }
+
+        const data = await response.json();
+        // expecting data.posts to be an array of posts
+        setPosts(data.posts);
+      } catch (error) {
+        console.error("Error fetching posts:", error);
+      }
+    }
+    fetchPosts();
+  }, []);
   
     if (loading) {
       return <div>Loading...</div>
@@ -16,13 +45,18 @@ const HomePage = () => {
   
   return (
     <div>
-     
-    <Post profilePic={profilePic}
-      userName="Test User"
-      postTitle="Lorem ipsum dolor sit. Lorem ipsum dolor sit amet, consectetur adipiscing elit"
-      timestamp={new Date().toISOString()}
-      contentArea="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." id={0}    />
-
+      {posts.length === 0 && <div>No posts available. </div>}
+      {posts.map((post) => (
+        <Post
+          key={post.id}
+          profilePic={profilePic}
+          userName={post.user?.username || "UserName"}
+          postTitle={post.title}
+          timestamp={new Date(post.createdAt).toLocaleString()}
+          contentArea={post.content}
+          id={post.id}
+        />
+      ))}
     </div>
   );
 };

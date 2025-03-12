@@ -11,7 +11,7 @@ function ProfilePage() {
     likes: 500,
     publicPosts: [
       {
-        id: 1,
+        id: "1",
         profilePic,
         userName: "Gobinda Gautam",
         postTitle: "Public Post 1",
@@ -21,7 +21,7 @@ function ProfilePage() {
     ],
     privatePosts: [
       {
-        id: 2,
+        id: "2",
         profilePic,
         userName: "Gobinda Gautam",
         postTitle: "Private Post 1",

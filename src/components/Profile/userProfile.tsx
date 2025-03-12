@@ -81,7 +81,8 @@ function UserProfile(props:UserProfileProps) {
                         userName={post.userName}
                         postTitle={post.postTitle}
                         contentArea={post.contentArea}
-                        timestamp={post.timestamp} id={0}              
+                        timestamp={post.timestamp}
+                        id={post.id}              
                       />
             )) 
         ) : (

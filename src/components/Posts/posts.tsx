@@ -9,7 +9,7 @@ import { Ellipsis, ExternalLink, MessageCircle } from 'lucide-react';
 // Post Components
 
  export interface PostProps {
-  id: number;
+  id: string;
   profilePic: string;
   userName: string;
   postTitle: string;
